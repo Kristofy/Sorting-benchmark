@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="windows-1250">
+<title>~\Documents\ELTE\web\weblap\algo\heapsort.hpp.html</title>
+<meta name="Generator" content="Vim/8.2">
+<meta name="plugin-version" content="vim8.1_v2">
+<meta name="syntax" content="cpp">
+<meta name="settings" content="use_css,pre_wrap,no_foldcolumn,prevent_copy=,use_input_for_pc=fallback">
+<meta name="colorscheme" content="none">
+<style>
+<!--
+pre { white-space: pre-wrap; font-family: monospace; color: #ffffff; background-color: #000000; }
+body { font-family: monospace; color: #ffffff; background-color: #000000; }
+* { font-size: 1em; }
+.PreProc { color: #ff6060; }
+.Type { color: #00ff00; }
+.Constant { color: #ff40ff; }
+.Statement { color: #00ffff; }
+-->
+</style>
+</head>
+<body>
+<pre id='vimCodeElement'>
+<span class="PreProc">#pragma once</span>
+<span class="PreProc">#include </span><span class="Constant">&quot;util.hpp&quot;</span>
+
+<span class="Type">void</span> heapify(<span class="Type">int</span> arr[], <span class="Type">int</span> n, <span class="Type">int</span> i)
+{
+    <span class="Type">int</span> largest = i;
+    <span class="Type">int</span> left = <span class="Constant">2</span> * i + <span class="Constant">1</span>;
+    <span class="Type">int</span> right = <span class="Constant">2</span> * i + <span class="Constant">2</span>;
+
+    <span class="Statement">if</span> (left &lt; n &amp;&amp; arr[left] &gt; arr[largest])
+        largest = left;
+
+    <span class="Statement">if</span> (right &lt; n &amp;&amp; arr[right] &gt; arr[largest])
+        largest = right;
+
+    <span class="Statement">if</span> (largest != i) {
+        swap(arr[i], arr[largest]);
+        heapify(arr, n, largest);
+    }
+}
+
+<span class="Type">void</span> make_heap(<span class="Type">int</span> arr[], <span class="Type">int</span> size){
+    <span class="Statement">for</span> (<span class="Type">int</span> i = size / <span class="Constant">2</span> - <span class="Constant">1</span>; i &gt;= <span class="Constant">0</span>; i--)
+        heapify(arr, size, i);
+}
+
+<span class="Type">void</span> heapsort(<span class="Type">int</span> arr[], <span class="Type">int</span> size)
+{
+    make_heap(arr, size);
+
+    <span class="Statement">for</span> (<span class="Type">int</span> i = size - <span class="Constant">1</span>; i &gt; <span class="Constant">0</span>; i--) {
+        swap(arr[<span class="Constant">0</span>], arr[i]);
+        heapify(arr, i, <span class="Constant">0</span>);
+    }
+}
+
+<span class="Type">void</span> heapsort_all(<span class="Type">int</span> arr[], <span class="Type">int</span> size){
+    heapsort(arr, size);
+}
+</pre>
+</body>
+</html>
+<!-- vim: set foldmethod=manual : -->
